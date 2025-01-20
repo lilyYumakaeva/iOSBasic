@@ -2,49 +2,86 @@ import UIKit
 
 
 
-// MARK: the first task
-func sum( _ a: Int, _ b: Int) -> Int{
-    a+b
-}
+//final class ViewController: UIViewController {
+//    
+//    init() {
+//        super.init(nibName: nil, bundle: nil)
+//        print("init " + #function)
+//    }
+//    
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//    deinit {
+//        print("deinit \(#function)")
+//    }
+//    
+//    var workItem: DispatchWorkItem?
+//    
+//    func execute() {
+//        let workItem = DispatchWorkItem { [weak self] in
+//            UIView.animate(withDuration: 1) {
+//                self?.view.alpha = 0.1
+//            }
+//        }
+//        
+//        self.workItem = workItem
+//    }
+//    
+//}
+//
+//autoreleasepool {
+//    let vc = ViewController()
+//    vc.execute()
+//}
 
-print(sum(5,4))
+//do {
+//    class Class2 {
+//        
+//    }
+//    
+//    struct Struct1 {
+//        var tmp: Class2
+//        var closure: () -> Void = {
+//            print("I'm closure")
+//        }
+//    }
+//    
+//    class Class1 {
+//        
+//        init() {
+//            print("Class1 \(#function)")
+//        }
+//        
+//        deinit {
+//            print("Class1 \(#function)")
+//        }
+//     
+//        var property: Int = 3
+//        var struct1 = Struct1(tmp: Class2())
+//     
+//        func execute() {
+//            struct1.closure = { [weak self] in
+//                self?.property = 2
+//            }
+//        }
+//     
+//    }
+//     
+//    autoreleasepool {
+//        var s: Class1? = Class1()
+//        s?.execute()
+//        s = nil
+//    }
+//}
 
-
-
-// MARK: the second task
-func convertToString(_ inputData:(Int, String)) -> String {
-    let result = String(inputData.0) + inputData.1
-    print(result)
-    return result
-}
-
-convertToString((5, "la-la-la"))
-
-
-
-// MARK: the third task
-func thirdTask(_ task: (() -> ())?, _ a: Int) {
-    if a>0 {
-        task?()
-    }
-}
-
-var myVar1 : () -> Void = {
-    print("Hello from Closure 1");
-}
-thirdTask( myVar1, 5)
-thirdTask( myVar1, -5)
-thirdTask( nil, 1)
-
-
-
-// MARK: the forth task
-func isLeapYear( _ year: UInt) -> Bool {
-    return year%4 == 0
-}
-
-let currentYear : UInt = 2024
-print("Is \(currentYear) year leap? \(isLeapYear(currentYear))")
-
-let nextYear : UInt = 2025
-print("Is \(nextYear) year leap? \(isLeapYear(nextYear))")
+var dictionary = ["a": 1, "b": 2]
+///
+///     // Keeping existing value for key "a":
+dictionary.merge(["a": 3, "c": 4]) {$1}
+print(dictionary)
+///     // ["b": 2, "a": 1, "c": 4]
+///
+///     // Taking the new value for key "a":
+///     dictionary.merge(["a": 5, "d": 6]) { (_, new) in new }
+///     // ["b": 2, "a": 5, "c": 4, "d": 6]

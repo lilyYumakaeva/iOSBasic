@@ -40,7 +40,15 @@ extension AppleDevice: CustomStringConvertible {
     }
 }
 
-let myFirstAppleDevice = AppleDevice.macBook
-print("My first apple device was \(myFirstAppleDevice.description)")
-print("My first apple device screen size was \(myFirstAppleDevice.screenSize.width) x \(myFirstAppleDevice.screenSize.height)")
-print("Was my first apple device iPad? \(myFirstAppleDevice.isPad)")
+//let myFirstAppleDevice = AppleDevice.macBook
+//print("My first apple device was \(myFirstAppleDevice.description)")
+//print("My first apple device screen size was \(myFirstAppleDevice.screenSize.width) x \(myFirstAppleDevice.screenSize.height)")
+//print("Was my first apple device iPad? \(myFirstAppleDevice.isPad)")
+
+let s = "String event name = \"registration.AcceptTerms\""
+print(s.drop { $0 != Constants.parametersSeparator }
+    .dropFirst()
+    .trimmingCharacters(in: .whitespaces))
+
+enum Constants {
+    static let parametersSeparator: Character = "="}
