@@ -15,6 +15,7 @@ struct ApiLayer {
         completion: @escaping (Result<Data, NetworkError>) -> Void
     ) {
         urlSession.dataTask(with: request){ data, response, error in
+           // print(response")
             guard error == nil else {
                 completion(.failure(.networkError))
                 return
@@ -38,7 +39,7 @@ struct ApiLayer {
         guard let httpResponse = response as? HTTPURLResponse else {
             return .invalidURLResponse
         }
-        
+        print("httpResponse.statusCode = \(httpResponse.statusCode)")
         switch httpResponse.statusCode {
         case 100..<200, 300..<400:
             return .invalidStatusCode

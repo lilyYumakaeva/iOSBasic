@@ -40,8 +40,28 @@ class UserDetailsViewController: UIViewController {
                     print(wrong)
                 case .success(let loadedPicture):
                     self.picture.image = loadedPicture
+                    self.reloadInputViews()
                 }
             }
         }
+    }
+    
+    
+    @IBAction func createUserInNewCompany(_ sender: Any) {
+        networkLayers.createUserInNewCompany(user: self.user!) { result in
+            DispatchQueue.main.async{
+                switch result {
+                case .failure(let wrong):
+                    print(wrong)
+                case .success(let right):
+                    print("New user was added to company")
+                    print("User name in New company: \(right.name)")
+                    print("User job in New company: \(right.job)")
+                }
+            }
+            
+        }
+        print("createUserInNewCompany was called")
+        dismiss(animated: true)
     }
 }

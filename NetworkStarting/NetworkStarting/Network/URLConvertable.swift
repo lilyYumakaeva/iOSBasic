@@ -28,8 +28,8 @@ protocol URLConvertable {
 
 extension URLConvertable {
     var scheme: String { "https" }
-    var host: String { Hosts.randomUser.rawValue}
-    var method: String { HTTPMethod.get.rawValue }
+   // var host: String { Hosts.randomUser.rawValue}
+    //var method: String { HTTPMethod.get.rawValue }
     
     func asRequest() throws -> URLRequest {
         var components: URLComponents = URLComponents()
@@ -45,7 +45,7 @@ extension URLConvertable {
         }
         print("url = \(url)")
         var request: URLRequest = URLRequest(url: url)
-        request.httpMethod = method
+        request.httpMethod = method.rawValue
         
         return request
         
@@ -53,7 +53,8 @@ extension URLConvertable {
 }
 
 enum UsersEndpoint: URLConvertable {
-    
+    var host: String { Hosts.randomUser.rawValue}
+    var method:  HTTPMethod {.get}
     
     case users
     
@@ -69,6 +70,24 @@ enum UsersEndpoint: URLConvertable {
             return ["results":"10"]
         }
     }
+}
+
+enum UsersInNewCompanyEndpoint: URLConvertable {
+    var host: String { Hosts.reqres.rawValue}
+    var method:  HTTPMethod {.post}
     
-    var method: HTTPMethod {.get}
+    case users
+    
+    var path: String {
+        switch self {
+        case .users:
+            return "/api/users"
+        }
+    }
+    var urlQuery: [String : String] {
+        switch self {
+        case .users:
+            return [:]
+        }
+    }
 }
